@@ -1,0 +1,10 @@
+.filterCSS {
+     border: 1px solid black;
+    border-radius: 8px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: aqua;
+}
+.filterCSS input {
+    border-radius: 6px;
+}

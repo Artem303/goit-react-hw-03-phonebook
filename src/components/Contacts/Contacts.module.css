@@ -1,0 +1,15 @@
+.contactList {
+    border: 1px solid black;
+    border-radius: 8px;
+    background-color: aqua;
+
+    padding: 15px;
+
+}
+.contactList li {
+display: flex;
+justify-content: space-between;
+padding: 15px;
+/* padding-top: 10px; */
+
+}
