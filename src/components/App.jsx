@@ -16,9 +16,12 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    const localStorageContacts = JSON.parse(localStorage.getItem('contacts'));
-    console.log(localStorageContacts);
-    this.setState({ contacts: localStorageContacts });
+    const localStorageContacts = localStorage.getItem('contacts');
+    const contactsParse = JSON.parse(localStorageContacts);
+
+    if (contactsParse) {
+      this.setState({ contacts: localStorageContacts });
+    }
   }
 
   componentDidUpdate(_, prevState) {
@@ -46,6 +49,7 @@ class App extends React.Component {
   getFilterContact = () => {
     const { filter, contacts } = this.state;
     const normalizeFilter = filter.toLowerCase();
+
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(normalizeFilter)
     );
@@ -67,7 +71,9 @@ class App extends React.Component {
         <FormContactInput onSubmit={this.formSubmit} />
         <h2>Contacts</h2>
         <FilterContacts filter={filter} onChange={this.onChangeFilter} />
-        <Contacts stateArr={visibleArr} deleteContact={this.deleteContact} />
+        {this.state.contacts && (
+          <Contacts stateArr={visibleArr} deleteContact={this.deleteContact} />
+        )}
       </div>
     );
   }
