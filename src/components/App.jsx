@@ -20,7 +20,7 @@ class App extends React.Component {
     const contactsParse = JSON.parse(localStorageContacts);
 
     if (contactsParse) {
-      this.setState({ contacts: localStorageContacts });
+      this.setState({ contacts: contactsParse });
     }
   }
 
@@ -70,8 +70,10 @@ class App extends React.Component {
         <h1>Phonebook</h1>
         <FormContactInput onSubmit={this.formSubmit} />
         <h2>Contacts</h2>
-        <FilterContacts filter={filter} onChange={this.onChangeFilter} />
-        {this.state.contacts && (
+        {this.state.contacts.length > 0 && (
+          <FilterContacts filter={filter} onChange={this.onChangeFilter} />
+        )}
+        {this.state.contacts.length > 0 && (
           <Contacts stateArr={visibleArr} deleteContact={this.deleteContact} />
         )}
       </div>
